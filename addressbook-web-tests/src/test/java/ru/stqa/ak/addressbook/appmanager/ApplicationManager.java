@@ -2,10 +2,7 @@ package ru.stqa.ak.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 import java.util.concurrent.TimeUnit;
-
-import static org.testng.Assert.assertTrue;
 
 public class ApplicationManager {
 
@@ -36,23 +33,6 @@ public class ApplicationManager {
      wd.quit();
     }
 
-    public boolean isElementPresent(By by) {
-      try {
-       wd.findElement(by);
-        return true;
-      } catch (NoSuchElementException e) {
-        return false;
-      }
-    }
-
-    public boolean isAlertPresent() {
-      try {
-      wd.switchTo().alert();
-        return true;
-      } catch (NoAlertPresentException e) {
-        return false;
-      }
-    }
 
     public GroupHelper getGroupHelper() {
         return groupHelper;

@@ -27,7 +27,6 @@ public class ContactHelper {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
-    wd.findElement(By.name("theform")).click();
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
     wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
