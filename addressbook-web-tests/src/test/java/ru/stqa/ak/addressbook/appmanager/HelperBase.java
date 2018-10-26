@@ -9,6 +9,7 @@ public class HelperBase {
     protected FirefoxDriver wd;
 
     public HelperBase(FirefoxDriver wd) {
+
         this.wd = wd;
     }
 
@@ -22,7 +23,7 @@ public class HelperBase {
         wd.findElement(locator).sendKeys(text);
     }
 
-   public boolean isAlertPresent() {
+    public boolean isAlertPresent() {
         try {
             wd.switchTo().alert();
             return true;

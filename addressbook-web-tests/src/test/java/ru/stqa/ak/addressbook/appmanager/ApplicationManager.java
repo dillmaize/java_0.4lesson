@@ -2,6 +2,8 @@ package ru.stqa.ak.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import sun.plugin2.util.BrowserType;
+
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
