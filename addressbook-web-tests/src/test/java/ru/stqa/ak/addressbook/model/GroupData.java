@@ -7,9 +7,7 @@ public class GroupData {
     private final String header;
     private final String footer;
 
-    public int getId() {
-        return id;
-    }
+
 
 
 
@@ -25,6 +23,10 @@ public class GroupData {
         this.name = name;
         this.header = header;
         this.footer = footer;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setId(int id) {
