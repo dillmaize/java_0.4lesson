@@ -1,12 +1,11 @@
 package ru.stqa.ak.addressbook.tests;
 
-        import org.testng.Assert;
-        import org.testng.annotations.*;
-        import ru.stqa.ak.addressbook.model.GroupData;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import ru.stqa.ak.addressbook.model.GroupData;
 
-        import java.util.Comparator;
-        import java.util.HashSet;
-        import java.util.List;
+import java.util.Comparator;
+import java.util.List;
 
 public class GroupCreationTests extends TestBase {
 

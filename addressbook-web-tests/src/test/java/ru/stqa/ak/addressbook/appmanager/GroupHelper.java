@@ -3,7 +3,6 @@ package ru.stqa.ak.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.ak.addressbook.model.GroupData;
 
 import java.util.ArrayList;
@@ -56,12 +55,20 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
+    public void modifyGroup(int index, GroupData group) {
+        selectGroup(index);
+        initGroupModification();
+        fillGroupForm(group);
+        submitGroupModification();
+        returnToGroupPage();
+    }
+
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
     }
 
     public int getGroupCount() {
-       return wd.findElements(By.name("selected[]")).size();
+        return wd.findElements(By.name("selected[]")).size();
     }
 
     public List<GroupData> getGroupList() {
@@ -75,4 +82,6 @@ public class GroupHelper extends HelperBase {
         }
         return groups;
     }
+
+
 }
