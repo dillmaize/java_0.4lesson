@@ -7,9 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.ak.addressbook.model.ContactData;
+import ru.stqa.ak.addressbook.model.Contacts;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.testng.Assert.assertTrue;
 
@@ -74,9 +76,10 @@ public class ContactHelper extends HelperBase {
         acceptNextAlert = true;
     }
 
-    public void selectContact(int index) {
 
-        wd.findElements(By.name("selected[]")).get(index).click();
+    public void selectContactById(int id) {
+
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
     // public void selectContact() {
@@ -87,19 +90,31 @@ public class ContactHelper extends HelperBase {
         wd.findElements(By.cssSelector("img[title='Edit']")).get(index).click();
     }
 
+    public void initContactModificationById(int id) {
+        wd.findElement(By.xpath("//tr[.//*[@id='" + id + "']]//*[@title='Edit']")).click();
+    }
+
     public void submitContactModification() {
         click(By.name("update"));
     }
 
-    public void createContact(ContactData contact, boolean b) {
+    public void create(ContactData contact, boolean b) {
         gotoAddNew();
         fillContactForm(contact, true);
         submitContactCreation();
     }
 
-    public void modifyContact(int index, ContactData contact) {
-        selectContact(index);
-        initContactModification(index);
+
+    public void delete(ContactData contact) {
+        selectContactById(contact.getId());
+        acceptNextAlert();
+        deleteSelectedContacts();
+        acceptDeletedContact();
+    }
+
+    public void modify(ContactData contact) {
+        selectContactById(contact.getId());
+        initContactModificationById(contact.getId());
         fillContactForm(contact, false);
         submitContactModification();
         returnToHomePage();
@@ -113,17 +128,17 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public List<ContactData> getContactList() {
-        List<ContactData> contacts = new ArrayList<ContactData>();
+    public Contacts all() {
+        Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.cssSelector("[name=entry]"));
         for (WebElement element : elements) {
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             String firstName = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
             String lastName = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
-
-            ContactData contact = new ContactData(id, firstName, lastName, null, null, null, null);
-            contacts.add(contact);
+            contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
         }
         return contacts;
     }
+
+
 }
