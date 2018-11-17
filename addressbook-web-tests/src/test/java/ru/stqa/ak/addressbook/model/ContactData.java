@@ -28,7 +28,9 @@ public class ContactData {
     private String allEmails;
     @Expose
     private String group;
+    @Expose
     private File photo;
+
 
     public File getPhoto() {
         return photo;

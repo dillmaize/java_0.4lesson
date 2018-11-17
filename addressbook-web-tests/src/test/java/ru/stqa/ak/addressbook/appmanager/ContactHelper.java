@@ -51,6 +51,19 @@ public class ContactHelper extends HelperBase {
         }
     }
 
+    public void fillContactForm(ContactData contactData) {
+        type(By.name("firstname"), contactData.getFirstName());
+        type(By.name("lastname"), contactData.getLastName());
+        attach(By.name("photo"), contactData.getPhoto());
+        type(By.name("address"), contactData.getAddress());
+        type(By.name("home"), contactData.getHomePhone());
+        type(By.name("mobile"), contactData.getMobilePhone());
+        type(By.name("work"), contactData.getWorkPhone());
+        type(By.name("email"), contactData.getEmail());
+        type(By.name("email2"), contactData.getEmail2());
+        type(By.name("email3"), contactData.getEmail3());
+    }
+
 
     public void gotoAddNew() {
         click(By.linkText("add new"));
@@ -105,9 +118,9 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void create(ContactData contact, boolean b) {
+    public void create(ContactData contact) {
         gotoAddNew();
-        fillContactForm(contact, true);
+        fillContactForm(contact);
         submitContactCreation();
         contactCache = null;
     }
