@@ -8,7 +8,8 @@ import ru.stqa.ak.addressbook.appmanager.ApplicationManager;
 
 public class TestBase {
 
-    protected static ApplicationManager app = new ApplicationManager(BrowserType.FIREFOX);
+    protected static ApplicationManager app
+            = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
     @BeforeSuite
             (alwaysRun = true)

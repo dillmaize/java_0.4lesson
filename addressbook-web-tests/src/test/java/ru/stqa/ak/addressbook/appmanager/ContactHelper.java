@@ -9,9 +9,7 @@ import org.testng.Assert;
 import ru.stqa.ak.addressbook.model.ContactData;
 import ru.stqa.ak.addressbook.model.Contacts;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.testng.Assert.assertTrue;
 
@@ -24,6 +22,12 @@ public class ContactHelper extends HelperBase {
 
     public void returnToHomePage() {
         click(By.linkText("home page"));
+    }
+    public void homePage() {
+        if (isElementPresent(By.id("maintable"))){
+            return;
+        }
+        click(By.linkText("home"));
     }
 
 
@@ -84,6 +88,10 @@ public class ContactHelper extends HelperBase {
         }
     }
 
+    public void acceptAlert() {
+        wd.switchTo().alert().accept();
+    }
+
     public void acceptDeletedContact() {
         assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
     }
@@ -130,7 +138,8 @@ public class ContactHelper extends HelperBase {
         selectContactById(contact.getId());
         acceptNextAlert();
         deleteSelectedContacts();
-        acceptDeletedContact();
+        acceptAlert();
+        homePage();
         contactCache = null;
     }
 
