@@ -32,3 +32,6 @@ addressbook-web-tests/out/test/classes/ru/stqa/ak/addressbook/appmanager/GroupHe
 addressbook-web-tests/out/test/classes/ru/stqa/ak/addressbook/appmanager/ContactHelper.class
 addressbook-web-tests/out/test/classes/ru/stqa/ak/addressbook/appmanager/ApplicationManager.class
 *.class
+*.log
+*.class
+*.class
