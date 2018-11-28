@@ -40,4 +40,13 @@ public class DbHelper {
         session.close();
         return new Contacts(result);
     }
+
+    public Contacts contactsInGroup() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        List<ContactData> result = session.createQuery("from ContactData c where deprecated = '0000-00-00 00:00:00' and size(c.groups) != 0").list();
+        session.getTransaction().commit();
+        session.close();
+        return new Contacts(result);
+    }
 }

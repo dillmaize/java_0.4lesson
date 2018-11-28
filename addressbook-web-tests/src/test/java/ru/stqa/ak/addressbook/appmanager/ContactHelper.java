@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.ak.addressbook.model.ContactData;
 import ru.stqa.ak.addressbook.model.Contacts;
+import ru.stqa.ak.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class ContactHelper extends HelperBase {
 
 
         if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+         //   new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }
@@ -114,6 +115,29 @@ public class ContactHelper extends HelperBase {
     //     click(By.name("selected[]"));
     // }
 
+    public void addToGroup(ContactData addedContact, GroupData group) {
+        selectContactById(addedContact.getId());
+        chooseGroupToAddById(group.getId());
+        addContactToGroup();
+    }
+    private void addContactToGroup() {
+        click(By.name("add"));
+    }
+    public void deleteFromGroup(ContactData deletedContact, GroupData groupBefore) {
+        chooseGroupToDeleteById(groupBefore.getId());
+        selectContactById(deletedContact.getId());
+        deleteContactFromGroup();
+    }
+    private void deleteContactFromGroup() {
+        click(By.name("remove"));
+    }
+    private void chooseGroupToDeleteById(int id) {
+        new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(id));
+    }
+    private void chooseGroupToAddById(int id) {
+        new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(id));
+    }
+
     public void initContactModification(int index) {
         wd.findElements(By.cssSelector("img[title='Edit']")).get(index).click();
     }
@@ -125,6 +149,7 @@ public class ContactHelper extends HelperBase {
     public void submitContactModification() {
         click(By.name("update"));
     }
+
 
     public void create(ContactData contact) {
         gotoAddNew();
