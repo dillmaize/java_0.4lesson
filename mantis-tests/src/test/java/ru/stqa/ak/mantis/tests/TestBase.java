@@ -5,6 +5,8 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.ak.mantis.appmanager.ApplicationManager;
 
+import java.io.IOException;
+
 
 public class TestBase {
 
@@ -13,12 +15,12 @@ public class TestBase {
 
     @BeforeSuite
             (alwaysRun = true)
-    public void setUp() throws Exception {
+    public void setUp() throws IOException {
         app.init();
     }
 
     @AfterSuite(alwaysRun = true)
-    public void tearDown() throws Exception {
+    public void tearDown(){
         app.stop();
     }
 }

@@ -16,15 +16,15 @@ test {
     useTestNG {
         suites 'src/test/resources/testng.xml'
     }
-    if (project.hasProperty('browser')){
-        systemProperty 'browser', "${browser}"
-    }
-
-    if (project.hasProperty('target')){
+    if (project.hasProperty('target')) {
         systemProperty 'target', "${target}"
     }
-
-    if (project.hasProperty('verifyUI')){
+    
+    if (project.hasProperty('verifyUI')) {
         systemProperty 'verifyUI', "${verifyUI}"
+    }
+
+    if(projects.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
     }
 }
