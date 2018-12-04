@@ -20,6 +20,7 @@
     <orderEntry type="library" name="Gradle: org.seleniumhq.selenium:selenium-support:3.14.0" level="project" />
     <orderEntry type="library" name="Gradle: org.seleniumhq.selenium:selenium-remote-driver:3.14.0" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:java-hamcrest:2.0.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: commons-net:commons-net:3.6" level="project" />
     <orderEntry type="library" name="Gradle: com.beust:jcommander:1.72" level="project" />
     <orderEntry type="library" name="Gradle: org.apache-extras.beanshell:bsh:2.0b6" level="project" />
     <orderEntry type="library" name="Gradle: org.seleniumhq.selenium:selenium-api:3.14.0" level="project" />
